@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 
 class QueryBuilder extends Builder
 {
-    protected $operators = [
+    public $operators = [
         '=', '==', '<', '>', '<=', '>=', '<>', '!',
         '~', '""', '*""', 'like'
     ];

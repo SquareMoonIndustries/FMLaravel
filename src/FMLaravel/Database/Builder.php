@@ -40,5 +40,3 @@ class Builder extends EloquentBuilder
         )->all();
     }    
 }
-
-}

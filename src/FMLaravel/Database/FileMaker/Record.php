@@ -1,19 +1,19 @@
 <?php namespace FMLaravel\Database\FileMaker;
 
-use FileMaker_Record;
+use airmoi\FileMaker\Object\Record as Filemaker_Record;
 use FMLaravel\Database\FileMaker\RecordInterface;
 use FMLaravel\Database\FileMaker\RecordImplementation;
 
-class Record extends FileMaker_Record implements RecordInterface
+class Record extends Filemaker_Record implements RecordInterface
 {
 
-    public function __construct(&$layout)
+    public function __construct($layout)
     {
-        $this->_impl = new RecordImplementation($layout);
+       $this->layout = $layout;
     }
 
     public function getAllFields()
     {
-        return $this->_impl->getAllFields();
+        return $this->getFields();
     }
 }

@@ -8,7 +8,7 @@ use FMLaravel\Database\Helpers;
 use Illuminate\Database\Query\Builder;
 //use Illuminate\Database\Eloquent\Builder;
 use \stdClass;
-use FileMaker;
+use airmoi\FileMaker\FileMaker;
 use Exception;
 use Illuminate\Support\Str;
 

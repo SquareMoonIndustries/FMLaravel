@@ -3,7 +3,7 @@
 use FMLaravel\Database\FileMaker\Record;
 use FMLaravel\Database\FileMaker\RecordInterface;
 use FMLaravel\Database\Model;
-use FileMaker;
+use airmoi\FileMaker\FileMaker;
 use FileMaker_Result;
 
 class RecordExtractor

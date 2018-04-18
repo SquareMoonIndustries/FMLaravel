@@ -10,10 +10,20 @@ class Record extends Filemaker_Record implements RecordInterface
     public function __construct($layout)
     {
        $this->layout = $layout;
+       $this->fm = $layout->fm;
+
     }
 
     public function getAllFields()
     {
-        return $this->getFields();
+        $fields = $this->getFields();
+        $temp = array();
+        for ($x = 0; $x < count($this->getFields()); $x++) {
+            $field = $fields[$x];
+            $temp[$field] = $this->getField($field);
+        }
+        return $temp;
+
+
     }
 }

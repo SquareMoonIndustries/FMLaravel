@@ -34,9 +34,12 @@ class RecordRelation extends Relation
     {
 
         if (count($models)) {
-            $model = array_first($models, function ($key,Model $model) use ($relation) {
+            $model = array_first($models, function (Model $model,$key) use ($relation) {
                 return (bool)count($model->getFileMakerMetaData(Model::FILEMAKER_RELATED_RECORDS)[$relation]);
             });
+
+
+            
 
             if (!empty($model)) {
                 $keys = array_keys($model->getFileMakerMetaData(Model::FILEMAKER_RELATED_RECORDS)[$relation][0]);

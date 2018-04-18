@@ -19,7 +19,7 @@
         "php": ">=5.4.0",
         "illuminate/support": ">=5.2",
         "illuminate/database": ">=5.2",
-        "andrewmile/fm-api": "0.1.2"
+        "airmoi/filemaker": "^2.2"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0",

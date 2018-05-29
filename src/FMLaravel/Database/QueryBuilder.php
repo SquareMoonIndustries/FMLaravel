@@ -267,7 +267,7 @@ class QueryBuilder extends Builder
         );
         $result = $command->execute();
 
-        if (\FileMaker::isError($result)) {
+        if (FileMaker::isError($result)) {
             throw FileMakerException::newFromError($result);
         }
 
@@ -294,7 +294,7 @@ class QueryBuilder extends Builder
             );
             $result = $command->execute();
 
-            if (\FileMaker::isError($result)) {
+            if (FileMaker::isError($result)) {
                 throw FileMakerException::newFromError($result);
             }
 
@@ -350,11 +350,11 @@ class QueryBuilder extends Builder
         );
         $result = $command->execute();
 
-        if (\FileMaker::isError($result)) {
+        if (FileMaker::isError($result)) {
             throw FileMakerException::newFromError($result);
         }
-
-        $record = reset($result->getRecords());
+        $records = $result->getRecords();
+        $record = reset($records);
 
         $this->model->setRawAttributes($record->getAllFields());
 

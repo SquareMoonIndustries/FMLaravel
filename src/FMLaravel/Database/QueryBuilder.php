@@ -297,8 +297,8 @@ class QueryBuilder extends Builder
             if (FileMaker::isError($result)) {
                 throw FileMakerException::newFromError($result);
             }
-
-            $record = reset($result->getRecords());
+            $records = $result->getRecords());
+            $record = reset($records);
 
             // because setRawAttributes overwrites the whole array, we have to save the meta data before.
             $meta = (array)$this->model->getFileMakerMetaData();

@@ -9,6 +9,8 @@ use Illuminate\Database\Query\Builder;
 //use Illuminate\Database\Eloquent\Builder;
 use \stdClass;
 use airmoi\FileMaker\FileMaker;
+use airmoi\FileMaker\FileMakerException as FileMakerDatabaseException;
+
 use Exception;
 use Illuminate\Support\Str;
 
@@ -70,15 +72,20 @@ class QueryBuilder extends Builder
         $this->addSortRules();
         $this->setRange();
 
-        $result = $this->find->execute();
-
-        /* check if error occurred.
-         * This wonderful FileMaker API considers no found entries as an error with code 401 which is why we have
-         * to make this ridiculous exception. Shame on them, really.
-         */
-        if (FileMaker::isError($result) && !in_array($result->getCode(), ['401'])) {
-            throw FileMakerException::newFromError($result);
+        try{
+            $result = $this->find->execute();
+        } catch (FileMakerDatabaseException $e){
+            /* check if error occurred.
+            * This wonderful FileMaker API considers no found entries as an error with code 401 which is why we have
+            * to make this ridiculous exception. Shame on them, really.
+            */  
+            if ($e->getCode() != 401) {
+                throw $e;
+            } else {
+                $result = $e;
+            }
         }
+        
 
         return $this->recordExtractor->processResult($result);
     }

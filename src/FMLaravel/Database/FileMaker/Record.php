@@ -22,6 +22,7 @@ class Record extends Filemaker_Record implements RecordInterface
             $field = $fields[$x];
             $format = $this->layout->getField($field)->result;
             $value =  $this->getField($field);
+            /*
             if($value && $format === "number"){
                 $value = (float)$value;
             } else if ($value && $format === "date"){
@@ -29,6 +30,7 @@ class Record extends Filemaker_Record implements RecordInterface
             } else {
 
             }
+            */
             $temp[$field] = $value;
         }
         return $temp;

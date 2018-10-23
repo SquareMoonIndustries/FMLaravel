@@ -20,9 +20,21 @@ class Record extends Filemaker_Record implements RecordInterface
         $temp = array();
         for ($x = 0; $x < count($this->getFields()); $x++) {
             $field = $fields[$x];
-            $temp[$field] = $this->getField($field);
+            $format = $this->layout->getField($field)->result;
+            $value =  $this->getField($field);
+            if($value && $format === "number"){
+                $value = (float)$value;
+            } else if ($value && $format === "date"){
+                $value = \DateTime::createFromFormat('m/d/Y', $value);
+            } else {
+
+            }
+            $temp[$field] = $value;
         }
         return $temp;
+
+
+    }
 
 
     }

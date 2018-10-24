@@ -34,10 +34,5 @@ class Record extends Filemaker_Record implements RecordInterface
             $temp[$field] = $value;
         }
         return $temp;
-
-
-    }
-
-
     }
 }

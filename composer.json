@@ -1,5 +1,5 @@
 {
-	"name": "demobiel/fm-laravel",
+	"name": "SquareMoonIndustries/fm-laravel",
 	"description": "Laravel friendly wrapper for the FileMaker API for PHP",
 	"keywords": [
 		"filemaker",

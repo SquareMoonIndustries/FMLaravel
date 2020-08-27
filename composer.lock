@@ -4,43 +4,47 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d426ec3f59cadc5df58448063c7ac221",
+    "content-hash": "afff38d515ca574218821d69ac24e5ce",
     "packages": [
         {
-            "name": "andrewmile/fm-api",
-            "version": "0.1.2",
+            "name": "airmoi/filemaker",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/andrewmile/FMAPI.git",
-                "reference": "8fa19f97cf2752eff4af427e92b7d34ed617cf0f"
+                "url": "https://github.com/airmoi/FileMaker.git",
+                "reference": "d79dd02b24e152e0964d11aab355d741e1f5f5c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andrewmile/FMAPI/zipball/8fa19f97cf2752eff4af427e92b7d34ed617cf0f",
-                "reference": "8fa19f97cf2752eff4af427e92b7d34ed617cf0f",
+                "url": "https://api.github.com/repos/airmoi/FileMaker/zipball/d79dd02b24e152e0964d11aab355d741e1f5f5c4",
+                "reference": "d79dd02b24e152e0964d11aab355d741e1f5f5c4",
                 "shasum": ""
             },
-            "require": {
-                "php": ">=5.4.0"
+            "require-dev": {
+                "phpunit/phpunit": "^5.6"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "": "src/"
+                "psr-4": {
+                    "airmoi\\FileMaker\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
             "authors": [
                 {
-                    "name": "Andrew Morgan",
-                    "email": "andrewmile@gmail.com"
+                    "name": "Romain Dunand",
+                    "email": "romain@1-more-thing.com"
                 }
             ],
-            "description": "FileMaker API for PHP",
+            "description": "Rewritten FileMaker PHP-API",
             "keywords": [
-                "FileMaker"
+                "FileMaker",
+                "PHP-API"
             ],
-            "time": "2015-05-14T13:47:29+00:00"
+            "time": "2020-04-01T14:37:28+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -539,6 +543,42 @@
     ],
     "packages-dev": [
         {
+            "name": "andrewmile/fm-api",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andrewmile/FMAPI.git",
+                "reference": "8fa19f97cf2752eff4af427e92b7d34ed617cf0f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andrewmile/FMAPI/zipball/8fa19f97cf2752eff4af427e92b7d34ed617cf0f",
+                "reference": "8fa19f97cf2752eff4af427e92b7d34ed617cf0f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Andrew Morgan",
+                    "email": "andrewmile@gmail.com"
+                }
+            ],
+            "description": "FileMaker API for PHP",
+            "keywords": [
+                "FileMaker"
+            ],
+            "time": "2015-05-14T13:47:29+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
             "source": {
@@ -810,8 +850,7 @@
             "authors": [
                 {
                     "name": "Chris Boulton",
-                    "homepage": "http://github.com/chrisboulton",
-                    "role": "Original developer"
+                    "homepage": "http://github.com/chrisboulton"
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
@@ -1205,6 +1244,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2017-02-27T10:12:30+00:00"
         },
         {
@@ -1346,6 +1386,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2017-06-30T09:13:00+00:00"
         },
         {

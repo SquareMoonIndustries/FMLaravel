@@ -242,7 +242,7 @@ class QueryBuilder extends Builder
     {
         $i = 1;
         foreach ($this->sorts as $field => $order) {
-            $order = $order == 'desc' ? FILEMAKER_SORT_DESCEND : FILEMAKER_SORT_ASCEND;
+            $order = $order == 'desc' ? FileMaker::SORT_DESCEND : FileMaker::SORT_ASCEND;
             $this->find->addSortRule($field, $i, $order);
             $i++;
         }

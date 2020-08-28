@@ -21,7 +21,7 @@ class Record extends Filemaker_Record implements RecordInterface
         for ($x = 0; $x < count($this->getFields()); $x++) {
             $field = $fields[$x];
             $format = $this->layout->getField($field)->result;
-            $value =  $this->getField($field);
+            $value =  $this->getField($field, 0, true);
             /*
             if($value && $format === "number"){
                 $value = (float)$value;

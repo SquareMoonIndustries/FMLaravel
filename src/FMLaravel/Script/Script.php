@@ -135,7 +135,7 @@ class Script
 
         $result = $command->execute();
 
-        if ($fm->isError($result) && !in_array($result->getCode(), ['401'])) {
+        if (fmGetIsError($result) && !in_array($result->getCode(), ['401'])) {
             throw FileMakerException::newFromError($result, "layout = {$layout}, script = {$script}");
         }
 

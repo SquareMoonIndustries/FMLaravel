@@ -8,7 +8,7 @@ use FMLaravel\Database\Helpers;
 use Illuminate\Database\Query\Builder;
 //use Illuminate\Database\Eloquent\Builder;
 use \stdClass;
-use airmoi\FileMaker\FileMaker;
+require_once __DIR__.'/../fmPDA/v2/fmPDA.php';
 use airmoi\FileMaker\FileMakerException as FileMakerDatabaseException;
 
 use Exception;
@@ -71,22 +71,19 @@ class QueryBuilder extends Builder
         $this->parseWheres($this->wheres, $this->find, $find_type);
         $this->addSortRules();
         $this->setRange();
-
         try{
             $result = $this->find->execute();
         } catch (FileMakerDatabaseException $e){
             /* check if error occurred.
             * This wonderful FileMaker API considers no found entries as an error with code 401 which is why we have
             * to make this ridiculous exception. Shame on them, really.
-            */  
+            */ 
             if ($e->getCode() != 401) {
                 throw $e;
             } else {
                 $result = $e;
             }
         }
-        
-
         return $this->recordExtractor->processResult($result);
     }
 
@@ -184,7 +181,6 @@ class QueryBuilder extends Builder
         if (! $value instanceof Expression) {
             $this->addBinding($value, 'where');
         }
-
         return $this;
     }
 
@@ -242,7 +238,7 @@ class QueryBuilder extends Builder
     {
         $i = 1;
         foreach ($this->sorts as $field => $order) {
-            $order = $order == 'desc' ? FileMaker::SORT_DESCEND : FileMaker::SORT_ASCEND;
+            $order = $order == 'desc' ? FILEMAKER_SORT_DESCEND : FILEMAKER_SORT_ASCEND;
             $this->find->addSortRule($field, $i, $order);
             $i++;
         }
@@ -274,7 +270,7 @@ class QueryBuilder extends Builder
         );
         $result = $command->execute();
 
-        if (FileMaker::isError($result)) {
+        if (fmGetIsError($result)) {
             throw FileMakerException::newFromError($result);
         }
 
@@ -301,7 +297,7 @@ class QueryBuilder extends Builder
             );
             $result = $command->execute();
 
-            if (FileMaker::isError($result)) {
+            if (fmGetIsError($result)) {
                 throw FileMakerException::newFromError($result);
             }
             $records = $result->getRecords();
@@ -310,7 +306,7 @@ class QueryBuilder extends Builder
             // because setRawAttributes overwrites the whole array, we have to save the meta data before.
             $meta = (array)$this->model->getFileMakerMetaData();
 
-            $this->model->setRawAttributes($record->getAllFields());
+            $this->model->setRawAttributes($record->data['fieldData']);
 
             $meta[Model::FILEMAKER_MODIFICATION_ID] = $record->getModificationId();
             $this->model->setFileMakerMetaDataArray($meta);
@@ -357,13 +353,12 @@ class QueryBuilder extends Builder
         );
         $result = $command->execute();
 
-        if (FileMaker::isError($result)) {
+        if (fmGetIsError($result)) {
             throw FileMakerException::newFromError($result);
         }
         $records = $result->getRecords();
         $record = reset($records);
-
-        $this->model->setRawAttributes($record->getAllFields());
+        $this->model->setRawAttributes($record->data['fieldData']);
 
         $meta = [
             Model::FILEMAKER_RECORD_ID            => $record->getRecordId(),

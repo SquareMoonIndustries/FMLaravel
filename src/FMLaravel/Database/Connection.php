@@ -1,11 +1,11 @@
 <?php namespace FMLaravel\Database;
 
 use Illuminate\Database\Connection as BaseConnection;
-use airmoi\FileMaker\FileMaker;
+//use airmoi\FileMaker\FileMaker;
 use Illuminate\Support\Str;
 use \Session;
 use FMLaravel\Database\LogFacade;
-
+require_once __DIR__.'/../fmPDA/v2/fmPDA.php';
 class Connection extends BaseConnection
 {
 
@@ -53,19 +53,17 @@ class Connection extends BaseConnection
         if (!array_key_exists('cache', $config) || $config['cache']) {
             $this->connections[$type] = $con;
         }
-
         return $con;
     }
 
     protected function createFileMakerConnection($config)
     {
-        $fm = new FileMaker(
+        $fm = new \fmPDA(
             $config['database'],
             $config['host'],
             $config['username'],
             $config['password']
         );
-
         $fm->setProperty('recordClass', \FMLaravel\Database\FileMaker\Record::class);
 
         if (array_key_exists('properties', $config) && is_array($config['properties'])) {

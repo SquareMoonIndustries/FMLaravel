@@ -3,7 +3,7 @@
 use FMLaravel\Database\FileMaker\Record;
 use FMLaravel\Database\FileMaker\RecordInterface;
 use FMLaravel\Database\Model;
-use airmoi\FileMaker\FileMaker;
+require_once __DIR__.'/../fmPDA/v2/fmPDA.php';
 use FileMaker_Result;
 
 class RecordExtractor
@@ -53,10 +53,9 @@ class RecordExtractor
      */
     public function processResult($result)
     {
-        if (FileMaker::isError($result) || $result->getFetchCount() == 0) {
+        if (fmGetIsError($result) || $result->getFetchCount() == 0) {
             return [];
         }
-
         return $this->processArray($result->getRecords());
     }
 
@@ -66,9 +65,9 @@ class RecordExtractor
      */
     public function processArray(array $records)
     {
-        return array_map(function (RecordInterface $record) {
-
-            $row = $record->getAllFields();
+        return array_map(function ($record) {
+            //dd($record->data['fieldData']);
+            $row = $record->data['fieldData'];
 
             $meta = [
                 Model::FILEMAKER_RECORD_ID          => $record->getRecordId(),

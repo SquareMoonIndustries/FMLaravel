@@ -1,8 +1,7 @@
 <?php namespace FMLaravel\Database;
 
 use Illuminate\Database\Connection as BaseConnection;
-//use airmoi\FileMaker\FileMaker;
-use FMLaravel\fmPDA\fmPDA;
+use airmoi\FileMaker\FileMaker;
 use Illuminate\Support\Str;
 use \Session;
 use FMLaravel\Database\LogFacade;

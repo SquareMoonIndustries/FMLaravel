@@ -8,8 +8,7 @@ use FMLaravel\Database\Helpers;
 use Illuminate\Database\Query\Builder;
 //use Illuminate\Database\Eloquent\Builder;
 use \stdClass;
-//use airmoi\FileMaker\FileMaker;
-use FMLaravel\fmPDA\fmPDA;
+use airmoi\FileMaker\FileMaker;
 use airmoi\FileMaker\FileMakerException as FileMakerDatabaseException;
 
 use Exception;
@@ -275,7 +274,7 @@ class QueryBuilder extends Builder
         );
         $result = $command->execute();
 
-        if (fmGetIsError($result)) {
+        if (FileMaker::isError($result)) {
             throw FileMakerException::newFromError($result);
         }
 
@@ -302,7 +301,7 @@ class QueryBuilder extends Builder
             );
             $result = $command->execute();
 
-            if (fmGetIsError($result)) {
+            if (FileMaker::isError($result)) {
                 throw FileMakerException::newFromError($result);
             }
             $records = $result->getRecords();
@@ -358,7 +357,7 @@ class QueryBuilder extends Builder
         );
         $result = $command->execute();
 
-        if (fmGetIsError($result)) {
+        if (FileMaker::isError($result)) {
             throw FileMakerException::newFromError($result);
         }
         $records = $result->getRecords();

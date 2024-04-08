@@ -3,8 +3,7 @@
 use FMLaravel\Database\FileMaker\Record;
 use FMLaravel\Database\FileMaker\RecordInterface;
 use FMLaravel\Database\Model;
-//use airmoi\FileMaker\FileMaker;
-use FMLaravel\fmPDA\fmPDA;
+use airmoi\FileMaker\FileMaker;
 use FileMaker_Result;
 
 class RecordExtractor
@@ -54,7 +53,7 @@ class RecordExtractor
      */
     public function processResult($result)
     {
-        if (fmGetIsError($result) || $result->getFetchCount() == 0) {
+        if (FileMaker::isError($result) || $result->getFetchCount() == 0) {
             return [];
         }
 
